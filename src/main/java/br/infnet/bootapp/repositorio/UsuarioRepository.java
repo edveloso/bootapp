@@ -11,8 +11,7 @@ import br.infnet.bootapp.modelo.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
   
-	List<Usuario> findByName(String nome);
-	
-	Usuario obterPeloId(Integer id);
+	List<Usuario> findByNome(String nome);
+	Usuario findByEmail(String email);
 	
 }

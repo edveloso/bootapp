@@ -1,5 +1,7 @@
 package br.infnet.bootapp;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,12 +21,13 @@ public class Config {
 	@Bean
 	public CommandLineRunner init(UsuarioRepository repo) {
 		return args -> {
-			repo.save(new Usuario("joao", "joao@bol.com"));
-			repo.save(new Usuario("maria", "m@bol.com"));
-			repo.save(new Usuario("pedro", "p@bol.com"));
-			repo.save(new Usuario("renata", "r@bol.com"));
-			repo.save(new Usuario("afonso", "a@bol.com"));
+			List<Usuario> findByNome = repo.findByNome("joao");
+			for (Usuario u : findByNome) {
+				System.out.println(u.getNome() );
+			}
 			
+			Usuario email = repo.findByEmail("joao@bol.com");
+			System.out.println(email.getNome());
 		};
 	}
 	
